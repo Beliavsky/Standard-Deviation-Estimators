@@ -18,7 +18,7 @@ do iter=1,niter
    i1 = 1
    do i=1,ngroups
       i2 = i1 + n - 1
-      forall (imethod=1:4) xsd(i,imethod) = sd(x(i1:i1+n-1),imethod) ! compute sd for subset using various methods
+      forall (imethod=1:nmethods) xsd(i,imethod) = sd(x(i1:i2),imethod) ! compute sd for subset using various methods
       i1 = i1 + n
    end do
    if (print_each) write (*,"(/,2a10)") "method","avg_error"
