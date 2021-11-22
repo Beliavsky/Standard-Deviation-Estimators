@@ -2,13 +2,25 @@ module stdev_mod
 use kind_mod, only: dp
 implicit none
 private
-public :: mean,sd
+public :: mean,rms,sd
 contains
 pure function mean(x) result(xmean)
 real(kind=dp), intent(in) :: x(:)
 real(kind=dp)             :: xmean
 xmean = sum(x)/max(1,size(x))
 end function mean
+!
+pure function rms(x) result(xrms)
+real(kind=dp), intent(in) :: x(:)
+real(kind=dp)             :: xrms
+integer                   :: n
+n = size(x)
+if (n > 0) then
+   xrms = sqrt(mean(x**2)/n)
+else
+   xrms = -1.0_dp
+end if
+end function rms
 !
 pure function sd(x,imethod) result(xsd)
 ! formulas to compute standard deviation from Wikipedia https://en.wikipedia.org/wiki/Standard_deviation
