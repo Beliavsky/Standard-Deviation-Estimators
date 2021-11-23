@@ -4,7 +4,7 @@ use ziggurat_mod, only: zigset, rnor
 use stdev_mod   , only: mean, rms, sd
 implicit none
 integer      , parameter :: ntotal = 10**7, ngroups = ntotal/100, n = ntotal/ngroups, &
-                            nmethods = 4, niter = 10
+                            nmethods = 5, niter = 10
 real(kind=dp), parameter :: true_sd = 1.0_dp
 logical      , parameter :: print_each = .true., standardize = .true.
 real(kind=dp)            :: x(ntotal),xsd(ngroups,nmethods),avg_sd(niter,nmethods),avg_err(niter,nmethods),rmse(niter,nmethods)

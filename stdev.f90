@@ -35,12 +35,13 @@ if (n < 2) then
    return
 end if
 xmean = mean(x)
-ssd   = sum((x-xmean)**2)
+ssd   = sum((x-xmean)**2) - ((sum(x-xmean))**2)/n ! 2nd term is the two-pass correction term, which would be zero in exact arithmetic
 select case (imethod)
    case (1)    ; xsd = sqrt(ssd/n)
    case (2)    ; xsd = sqrt(ssd/(n - 1))
    case (3)    ; xsd = sqrt(ssd/(n - 1.5_dp))
    case (4)    ; xsd = sqrt(ssd/(n - 1.5_dp + 1.0_dp/(8*n-8)))
+   case (5)    ; xsd = sqrt(ssd/(n - 0.5_dp))
    case default; xsd = -2.0_dp
 end select
 end function sd
